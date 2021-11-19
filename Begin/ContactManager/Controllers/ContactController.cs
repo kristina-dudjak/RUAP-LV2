@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContactManager.Models;
+using ContactManager.Services;
 
 namespace ContactManager.Controllers
 {
@@ -12,21 +13,15 @@ namespace ContactManager.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
+        private ContactRepository contactRepository;
+
+        public ContactController()
+        {
+            this.contactRepository = new ContactRepository();
+        }
         public Contact[] Get()
         {
-            return new Contact[]
-            {
-                new Contact
-                {
-                    Id = 1,
-                    Name = "Glenn Block"
-                },
-                new Contact
-                {
-                    Id = 2,
-                    Name = "Dan Roth"
-                }
-            };
+            return contactRepository.GetAllContacts();
         }
     }
 }
