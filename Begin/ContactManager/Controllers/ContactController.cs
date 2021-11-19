@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ContactManager.Models;
 
 namespace ContactManager.Controllers
 {
@@ -11,12 +12,20 @@ namespace ContactManager.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        public string[] Get()
+        public Contact[] Get()
         {
-            return new string[]
+            return new Contact[]
             {
-                "Hello",
-                "World"
+                new Contact
+                {
+                    Id = 1,
+                    Name = "Glenn Block"
+                },
+                new Contact
+                {
+                    Id = 2,
+                    Name = "Dan Roth"
+                }
             };
         }
     }
