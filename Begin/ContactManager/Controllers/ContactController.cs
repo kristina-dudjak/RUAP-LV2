@@ -6,6 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContactManager.Models;
 using ContactManager.Services;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace ContactManager.Controllers
 {
@@ -19,9 +22,18 @@ namespace ContactManager.Controllers
         {
             this.contactRepository = new ContactRepository();
         }
+
+        [HttpGet]
         public Contact[] Get()
         {
             return contactRepository.GetAllContacts();
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromForm]Contact contact)
+        {
+            this.contactRepository.SaveContact(contact);
+            return CreatedAtAction(nameof(Get),contact);
         }
     }
 }
